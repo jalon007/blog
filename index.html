@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh_cn">
+<html class="theme-next mist use-motion" lang="zh_cn">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -97,7 +97,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -304,118 +304,18 @@
       
         
           
-            <h2 id="1、常用设计模式"><a href="#1、常用设计模式" class="headerlink" title="1、常用设计模式"></a>1、常用设计模式</h2><ul>
-<li>单例模式：懒汉式、饿汉式、双重校验锁、静态加载，内部类加载、枚举类加载。保证一个类仅有一个实例，并提供一个访问它的全局访问点。</li>
-<li>代理模式：动态代理和静态代理，什么时候使用动态代理。</li>
-<li>适配器模式：将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</li>
-<li>装饰者模式：动态给类加功能。</li>
-<li>观察者模式：有时被称作发布/订阅模式，观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状态发生变化时，会通知所有观察者对象，使它们能够自动更新自己。</li>
-<li>策略模式：定义一系列的算法,把它们一个个封装起来, 并且使它们可相互替换。</li>
-<li>外观模式：为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</li>
-<li>命令模式：将一个请求封装成一个对象，从而使您可以用不同的请求对客户进行参数化。</li>
-<li>创建者模式：将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。</li>
-<li>抽象工厂模式：提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</li>
-</ul>
-<hr>
-<h2 id="2、基础知识"><a href="#2、基础知识" class="headerlink" title="2、基础知识"></a>2、基础知识</h2><ul>
-<li>java基本类型哪些，所占字节和范围</li>
-<li>Set、List、Map的区别和联系</li>
-<li>什么时候使用HashMap</li>
-<li>什么时候使用LinkedHashMap、ConcurrentHashMap、WeakHashMap</li>
-<li>哪些集合类是线程安全的</li>
-<li>为什么Set、List、Map不实现Cloneable和Serializable接口</li>
-<li>ConcurrentHashMap的实现，1.7和1.8的实现</li>
-<li>Arrays.sort的实现</li>
-<li>什么时候使用CopyOnArrayList</li>
-<li>volatile的使用</li>
-<li>Synchronied的使用</li>
-<li>ReentrantLock的实现以及和Synchronied的区别</li>
-<li>CAS的实现原理以及问题</li>
-<li>AQS的实现原理</li>
-<li>接口和抽象类的区别，什么时候使用</li>
-<li>类加载机制的步骤，每一步做了什么，static和final修改的成员变量的加载时机</li>
-<li>双亲委派模型</li>
-<li>反射机制：反射动态擦除泛型、反射动态调用方法等</li>
-<li>动态绑定：父类引用指向子类对象</li>
-<li>JVM内存管理机制：有哪些区域，每个区域做了什么</li>
-<li>JVM垃圾回收机制：垃圾回收算法 垃圾回收器 垃圾回收策略</li>
-<li>jvm参数的设置和jvm调优</li>
-<li>什么情况产生年轻代内存溢出、什么情况产生年老代内存溢出</li>
-<li>内部类：静态内部类和匿名内部类的使用和区别</li>
-<li>redis和memcached：什么时候选择redis，什么时候选择memcached，内存模型和存储策略是什么样的</li>
-<li>mysql的基本操作 主从数据库一致性维护</li>
-<li>mysql的优化策略有哪些</li>
-<li>mysql索引的实现 B+树的实现原理</li>
-<li>什么情况索引不会命中，会造成全表扫描</li>
-<li>java中bio nio aio的区别和联系</li>
-<li>为什么bio是阻塞的 nio是非阻塞的 nio的模型是什么样的</li>
-<li>java io的整体架构和使用的设计模式</li>
-<li>Reactor模型和Proactor模型</li>
-<li>http请求报文结构和内容</li>
-<li>http三次握手和四次挥手</li>
-<li>rpc相关：如何设计一个rpc框架，从io模型 传输协议 序列化方式综合考虑</li>
-<li>linux命令 统计，排序，前几问题等</li>
-<li>StringBuff 和StringBuilder的实现，底层实现是通过byte数据，外加数组的拷贝来实现的</li>
-<li>cas操作的使用</li>
-<li>内存缓存和数据库的一致性同步实现</li>
-<li>微服务的优缺点</li>
-<li>线程池的参数问题</li>
-<li>ip问题 如何判断ip是否在多个ip段中</li>
-<li>判断数组两个中任意两个数之和是否为给定的值</li>
-<li>乐观锁和悲观锁的实现</li>
-<li>synchronized实现原理</li>
-<li>你在项目中遇到的困难和怎么解决的</li>
-<li>你在项目中完成的比较出色的亮点</li>
-<li>消息队列广播模式和发布/订阅模式的区别</li>
-<li>生产者消费者代码实现</li>
-<li>死锁代码实现</li>
-<li>线程池：参数，每个参数的作用，几种不同线程池的比较，阻塞队列的使用，拒绝策略</li>
-<li>Future和ListenableFuture 异步回调相关</li>
-<li>算法相关：判断能否从数组中找出两个数字和为给定值，随机生成1~10000不重复并放入数组，求数组的子数组的最大和，二分查找算法的实现及其时间复杂计算</li>
-</ul>
-<hr>
-<h2 id="3、其它"><a href="#3、其它" class="headerlink" title="3、其它"></a>3、其它</h2><ul>
-<li>算法：常用排序算法，二分查找，链表相关，数组相关，字符串相关，树相关等</li>
-<li>常见序列化协议及其优缺点</li>
-<li>memcached内存原理，为什么是基于块的存储</li>
-<li>搭建一个rpc需要准备什么</li>
-<li>如果线上服务器频繁地出现full gc ，如何去排查</li>
-<li>如果某一时刻线上机器突然量变得很大，服务扛不住了，怎么解决</li>
-<li>LRU算法的实现</li>
-<li>LinkedHashMap实现LRU</li>
-<li>定义栈的数据结构，请在该类型中实现一个能够找到栈最小元素的min函数</li>
-<li>海量数据处理的解决思路</li>
-<li>reactor模型的演变</li>
-<li>阻塞、非阻塞、同步、异步区别</li>
-<li>Collection的子接口</li>
-<li>jvm调优相关</li>
-<li>zookeeper相关，节点类型，如何实现服务发现和服务注册</li>
-<li>nginx负载均衡相关，让你去实现负载均衡，该怎么实现</li>
-<li>linux命令，awk、cat、sort、cut、grep、uniq、wc、top等</li>
-<li>压力测试相关，怎么分析，单接口压测和多情况下的压测</li>
-<li>你觉得你的优点是什么，你的缺点是什么，为什么我们要录用你</li>
-<li>Spring mvc的实现原理</li>
-<li>netty底层实现，IO模型，ChannelPipeline的实现和原理</li>
-<li>缓存的设计和优化</li>
-<li>缓存和数据库一致性同步解决方案</li>
-<li>你所在项目的系统架构，谈谈整体实现</li>
-<li>消息队列的使用场景</li>
-<li>ActiveMQ、RabbitMQ、Kafka的区别</li>
-<li>JVM内存分配策略和垃圾回收时机</li>
-<li>JVM垃圾回收策略和对象的实际生命周期</li>
-<li>对象是如何在堆中分配的</li>
-<li>full gc触发的场景，线上如果一直full gc怎么排查</li>
-<li>如何防止接口被恶意攻击</li>
-<li>线上某一台服务器出现问题，如何实际操作去解决</li>
-<li>线上接口最大的QPS以及如何评估服务器可承受的最大请求数</li>
-<li>内存缓存的使用场景和优缺点</li>
-<li>怎么防止线上接口被恶意刷</li>
-<li>怎么防止线上接口被攻击</li>
-<li>栈帧的结构</li>
-<li>transient关键字的使用</li>
-</ul>
-
-          
+          1、常用设计模式
+单例模式：懒汉式、饿汉式、双重校验锁、静态加载，内部类加载、枚举类加载。保证一个类仅有一个实例，并提供一个访问它的全局访问点。
+代理模式：动态代理和静态代理，什么时候使用动态代理。
+适配器模式：将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/10/Java面试知识点/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -563,7 +463,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
