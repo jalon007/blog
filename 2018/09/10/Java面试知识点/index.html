@@ -1,534 +1,68 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>Java高级开发工程师面试题整理 | JalonShare-互联网技术分享-技术进阶、源码解析、服务优化、面试技巧、分享学习</title>
-  <meta name="baidu-site-verification" content="O8QKBmGcxy" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-    <meta name="keywords" content="Java Python Shell Linux redis mysql mongodb" />
-  
-  <meta name="description" content="1、常用设计模式 单例模式：懒汉式、饿汉式、双重校验锁、静态加载，内部类加载、枚举类加载。保证一个类仅有一个实例，并提供一个访问它的全局访问点。 代理模式：动态代理和静态代理，什么时候使用动态代理。 适配器模式：将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。 装饰者模式：动态给类加功能。 观察者模式：有时被称作发布/订阅模式，观察者">
-<meta name="keywords" content="面试准备">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Java高级开发工程师面试题整理">
-<meta property="og:url" content="http://jalon007.github.io/2018/09/10/Java面试知识点/index.html">
-<meta property="og:site_name" content="JalonShare-互联网技术分享-技术进阶、源码解析、服务优化、面试技巧、分享学习">
-<meta property="og:description" content="1、常用设计模式 单例模式：懒汉式、饿汉式、双重校验锁、静态加载，内部类加载、枚举类加载。保证一个类仅有一个实例，并提供一个访问它的全局访问点。 代理模式：动态代理和静态代理，什么时候使用动态代理。 适配器模式：将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。 装饰者模式：动态给类加功能。 观察者模式：有时被称作发布/订阅模式，观察者">
-<meta property="og:locale" content="zh_cn">
-<meta property="og:updated_time" content="2018-09-10T09:09:55.148Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java高级开发工程师面试题整理">
-<meta name="twitter:description" content="1、常用设计模式 单例模式：懒汉式、饿汉式、双重校验锁、静态加载，内部类加载、枚举类加载。保证一个类仅有一个实例，并提供一个访问它的全局访问点。 代理模式：动态代理和静态代理，什么时候使用动态代理。 适配器模式：将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。 装饰者模式：动态给类加功能。 观察者模式：有时被称作发布/订阅模式，观察者">
-  
-  
-    <link rel="icon" href="/favicon.ico">
-  
-  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="/js/pace.min.js"></script>
-  
+extends base
 
-  
-  
+block title
+  title= page.title + ' | ' + config.title
 
-</head>
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format('ll')
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+      if theme.wordcount == true
+        include _partial/wordcount.pug
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if theme.changyan
+      a.ds-thread-count(href=url_for(page.path) + '#SOHUCS')
+        span#changyan_count_unit(style='font-size: 15px; color: #6E7173;') 0
+        span= ' ' + __('Comment')
+      script(src='https://assets.changyan.sohu.com/upload/plugins/plugins.count.js', async)
+    if theme.valine.enable
+      a.disqus-comment-count( href=url_for(page.path) + '#vcomment')
+        span.valine-comment-count(data-xid=url_for(page.path))
+        span= ' ' + __('Comment')
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content, {list_number: theme.toc_number})
+    .post-content
+      != page.content
+    if theme.donate.enable == true
+      iframe(src='/donate/?AliPayQR=' + theme.donate.alipay_qr + '&WeChatQR=' + theme.donate.wechat_qr + '&GitHub=' + theme.donate.github + '&BTCQR=' + theme.donate.btc_qr + '&BTCKEY='+ theme.donate.btc_key + '&PayPal=' + theme.donate.paypal_url, style='overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;', frameborder='0', scrolling='no')
 
-<body>
-  <div id="container">
-      <header id="header">
-    <div id="banner"></div>
-    <div id="header-outer">
-        <div id="header-menu" class="header-menu-pos animated">
-            <div class="header-menu-container">
-                <a href="/" class="left">
-                    <span class="site-title">Jalon&#39;s Blog</span>
-                </a>
-                <nav id="header-menu-nav" class="right">
-                    
-                    <a  href="/">
-                        <i class="fa fa-home"></i>
-                        <span>Home</span>
-                    </a>
-                    
-                    <a  href="/archives">
-                        <i class="fa fa-archive"></i>
-                        <span>Archives</span>
-                    </a>
-                    
-                    <a  href="/about">
-                        <i class="fa fa-user"></i>
-                        <span>About</span>
-                    </a>
-                    
-                </nav>
-                <a class="mobile-header-menu-button">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </div>
-        </div>
-        <div id="header-row">
-            <div id="logo">
-                <a href="/">
-                    <img src="/images/logo.png" alt="logo">
-                </a>
-            </div>
-            <div class="header-info">
-                <div id="header-title">
-                    
-                    <h1>
-                        Jalon&#39;s Blog
-                    </h1>
-                    
-                </div>
-                <div id="header-description">
-                    
-                    <h2>
-                        一个专注分享的技术博客
-                    </h2>
-                    
-                </div>
-            </div>
-            <nav class="header-nav">
-                <div class="social">
-                    
-                        <a title="MinHow" target="_blank" href="//jalon007.github.io">
-                            <i class="fa fa-home fa-2x"></i></a>
-                    
-                        <a title="Github" target="_blank" href="//github.com/jalon007">
-                            <i class="fa fa-github fa-2x"></i></a>
-                    
-                </div>
-            </nav>
-        </div>
-    </div>
-</header>
-      <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-Java面试知识点" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="post-title" itemprop="name">
-      Java高级开发工程师面试题整理
-    </h1>
-    <div class="post-title-bar">
-      <ul>
-          
-        <li>
-          <i class="fa fa-calendar"></i>  2018-09-10
-        </li>
-        <li>
-          <i class="fa fa-eye"></i>
-          <span id="busuanzi_value_page_pv"></span>
-        </li>
-      </ul>
-    </div>
-  
+    if theme.post_copyright.enable == true
+      div
+        ul.post-copyright
+          li.post-copyright-author
+            strong= __('copyright_author_prefix')
+            = theme.post_copyright.author
+          li.post-copyright-link
+            strong= __('copyright_link_prefix')
+            a(href='/' + page.path)= page.permalink
+          li.post-copyright-license
+            strong= __('copyright_declare_prefix')
+            if theme.post_copyright.copyright_text
+              != theme.post_copyright.copyright_text
+            else
+              != __('copyright_default_text')
+      br
 
-          
-      </header>
-    
-    <div class="article-entry post-content" itemprop="articleBody">
-      
-            
-            <h2 id="1、常用设计模式"><a href="#1、常用设计模式" class="headerlink" title="1、常用设计模式"></a>1、常用设计模式</h2><ul>
-<li>单例模式：懒汉式、饿汉式、双重校验锁、静态加载，内部类加载、枚举类加载。保证一个类仅有一个实例，并提供一个访问它的全局访问点。</li>
-<li>代理模式：动态代理和静态代理，什么时候使用动态代理。</li>
-<li>适配器模式：将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</li>
-<li>装饰者模式：动态给类加功能。</li>
-<li>观察者模式：有时被称作发布/订阅模式，观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状态发生变化时，会通知所有观察者对象，使它们能够自动更新自己。</li>
-<li>策略模式：定义一系列的算法,把它们一个个封装起来, 并且使它们可相互替换。</li>
-<li>外观模式：为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</li>
-<li>命令模式：将一个请求封装成一个对象，从而使您可以用不同的请求对客户进行参数化。</li>
-<li>创建者模式：将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。</li>
-<li>抽象工厂模式：提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</li>
-</ul>
-<hr>
-<h2 id="2、基础知识"><a href="#2、基础知识" class="headerlink" title="2、基础知识"></a>2、基础知识</h2><ul>
-<li>java基本类型哪些，所占字节和范围</li>
-<li>Set、List、Map的区别和联系</li>
-<li>什么时候使用HashMap</li>
-<li>什么时候使用LinkedHashMap、ConcurrentHashMap、WeakHashMap</li>
-<li>哪些集合类是线程安全的</li>
-<li>为什么Set、List、Map不实现Cloneable和Serializable接口</li>
-<li>ConcurrentHashMap的实现，1.7和1.8的实现</li>
-<li>Arrays.sort的实现</li>
-<li>什么时候使用CopyOnArrayList</li>
-<li>volatile的使用</li>
-<li>Synchronied的使用</li>
-<li>ReentrantLock的实现以及和Synchronied的区别</li>
-<li>CAS的实现原理以及问题</li>
-<li>AQS的实现原理</li>
-<li>接口和抽象类的区别，什么时候使用</li>
-<li>类加载机制的步骤，每一步做了什么，static和final修改的成员变量的加载时机</li>
-<li>双亲委派模型</li>
-<li>反射机制：反射动态擦除泛型、反射动态调用方法等</li>
-<li>动态绑定：父类引用指向子类对象</li>
-<li>JVM内存管理机制：有哪些区域，每个区域做了什么</li>
-<li>JVM垃圾回收机制：垃圾回收算法 垃圾回收器 垃圾回收策略</li>
-<li>jvm参数的设置和jvm调优</li>
-<li>什么情况产生年轻代内存溢出、什么情况产生年老代内存溢出</li>
-<li>内部类：静态内部类和匿名内部类的使用和区别</li>
-<li>redis和memcached：什么时候选择redis，什么时候选择memcached，内存模型和存储策略是什么样的</li>
-<li>mysql的基本操作 主从数据库一致性维护</li>
-<li>mysql的优化策略有哪些</li>
-<li>mysql索引的实现 B+树的实现原理</li>
-<li>什么情况索引不会命中，会造成全表扫描</li>
-<li>java中bio nio aio的区别和联系</li>
-<li>为什么bio是阻塞的 nio是非阻塞的 nio的模型是什么样的</li>
-<li>java io的整体架构和使用的设计模式</li>
-<li>Reactor模型和Proactor模型</li>
-<li>http请求报文结构和内容</li>
-<li>http三次握手和四次挥手</li>
-<li>rpc相关：如何设计一个rpc框架，从io模型 传输协议 序列化方式综合考虑</li>
-<li>linux命令 统计，排序，前几问题等</li>
-<li>StringBuff 和StringBuilder的实现，底层实现是通过byte数据，外加数组的拷贝来实现的</li>
-<li>cas操作的使用</li>
-<li>内存缓存和数据库的一致性同步实现</li>
-<li>微服务的优缺点</li>
-<li>线程池的参数问题</li>
-<li>ip问题 如何判断ip是否在多个ip段中</li>
-<li>判断数组两个中任意两个数之和是否为给定的值</li>
-<li>乐观锁和悲观锁的实现</li>
-<li>synchronized实现原理</li>
-<li>你在项目中遇到的困难和怎么解决的</li>
-<li>你在项目中完成的比较出色的亮点</li>
-<li>消息队列广播模式和发布/订阅模式的区别</li>
-<li>生产者消费者代码实现</li>
-<li>死锁代码实现</li>
-<li>线程池：参数，每个参数的作用，几种不同线程池的比较，阻塞队列的使用，拒绝策略</li>
-<li>Future和ListenableFuture 异步回调相关</li>
-<li>算法相关：判断能否从数组中找出两个数字和为给定值，随机生成1~10000不重复并放入数组，求数组的子数组的最大和，二分查找算法的实现及其时间复杂计算</li>
-</ul>
-<hr>
-<h2 id="3、其它"><a href="#3、其它" class="headerlink" title="3、其它"></a>3、其它</h2><ul>
-<li>算法：常用排序算法，二分查找，链表相关，数组相关，字符串相关，树相关等</li>
-<li>常见序列化协议及其优缺点</li>
-<li>memcached内存原理，为什么是基于块的存储</li>
-<li>搭建一个rpc需要准备什么</li>
-<li>如果线上服务器频繁地出现full gc ，如何去排查</li>
-<li>如果某一时刻线上机器突然量变得很大，服务扛不住了，怎么解决</li>
-<li>LRU算法的实现</li>
-<li>LinkedHashMap实现LRU</li>
-<li>定义栈的数据结构，请在该类型中实现一个能够找到栈最小元素的min函数</li>
-<li>海量数据处理的解决思路</li>
-<li>reactor模型的演变</li>
-<li>阻塞、非阻塞、同步、异步区别</li>
-<li>Collection的子接口</li>
-<li>jvm调优相关</li>
-<li>zookeeper相关，节点类型，如何实现服务发现和服务注册</li>
-<li>nginx负载均衡相关，让你去实现负载均衡，该怎么实现</li>
-<li>linux命令，awk、cat、sort、cut、grep、uniq、wc、top等</li>
-<li>压力测试相关，怎么分析，单接口压测和多情况下的压测</li>
-<li>你觉得你的优点是什么，你的缺点是什么，为什么我们要录用你</li>
-<li>Spring mvc的实现原理</li>
-<li>netty底层实现，IO模型，ChannelPipeline的实现和原理</li>
-<li>缓存的设计和优化</li>
-<li>缓存和数据库一致性同步解决方案</li>
-<li>你所在项目的系统架构，谈谈整体实现</li>
-<li>消息队列的使用场景</li>
-<li>ActiveMQ、RabbitMQ、Kafka的区别</li>
-<li>JVM内存分配策略和垃圾回收时机</li>
-<li>JVM垃圾回收策略和对象的实际生命周期</li>
-<li>对象是如何在堆中分配的</li>
-<li>full gc触发的场景，线上如果一直full gc怎么排查</li>
-<li>如何防止接口被恶意攻击</li>
-<li>线上某一台服务器出现问题，如何实际操作去解决</li>
-<li>线上接口最大的QPS以及如何评估服务器可承受的最大请求数</li>
-<li>内存缓存的使用场景和优缺点</li>
-<li>怎么防止线上接口被恶意刷</li>
-<li>怎么防止线上接口被攻击</li>
-<li>栈帧的结构</li>
-<li>transient关键字的使用</li>
-</ul>
+    if theme.shareto == true
+      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
+      a.article-share-link(data-url=page.permalink, data-id=page._id, data-qrcode=qrcode(page.permalink))= __('shareto')
 
-            <div class="post-copyright">
-    <div class="content">
-        <p>最后更新： 2018年09月10日 17:09</p>
-        <p>原始链接： <a class="post-url" href="/2018/09/10/Java面试知识点/" title="Java高级开发工程师面试题整理">http://jalon007.github.io/2018/09/10/Java面试知识点/</a></p>
-        <footer>
-            <a href="http://jalon007.github.io">
-                <img src="/images/logo.png" alt="Jalon">
-                Jalon
-            </a>
-        </footer>
-    </div>
-</div>
+    include _partial/tag.pug
+    include _partial/post_nav.pug
 
-      
-        
-            
-<div class="page-reward">
-    <a id="rewardBtn" href="javascript:;">赞赏</a>
-</div>
-
-<div id="reward" class="post-modal reward-lay">
-    <a class="close" href="javascript:;" id="reward-close">×</a>
-    <span class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        ~您的支持就是我更新的动力，请随意打赏~
-        <i class="icon icon-quote-right"></i>
-    </span>
-    <div class="reward-content">
-        
-        <div class="reward-code">
-            <img id="rewardCode" src="/images/wechat_jcode.png" alt="打赏二维码">
-        </div>
-        <div class="reward-select">
-            
-            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_jcode.png">
-                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
-            </label>
-            
-            
-            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_jcode.png">
-                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
-            </label>
-            
-        </div>
-    </div>
-</div>
-
-
-        
-    </div>
-    <footer class="article-footer">
-        
-        
-<div class="post-share">
-    <a href="javascript:;" id="share-sub" class="post-share-fab">
-        <i class="fa fa-share-alt"></i>
-    </a>
-    <div class="post-share-list" id="share-list">
-        <ul class="share-icons">
-          <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://jalon007.github.io/2018/09/10/Java面试知识点/&title=《Java高级开发工程师面试题整理》 — JalonShare-互联网技术分享-技术进阶、源码解析、服务优化、面试技巧、分享学习&pic=http://jalon007.github.ioimages/logo.png" data-title="微博">
-              <i class="fa fa-weibo"></i>
-            </a>
-          </li>
-          <li>
-            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
-              <i class="fa fa-weixin"></i>
-            </a>
-          </li>
-          <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://jalon007.github.io/2018/09/10/Java面试知识点/&title=《Java高级开发工程师面试题整理》 — JalonShare-互联网技术分享-技术进阶、源码解析、服务优化、面试技巧、分享学习&source=JalonShare-专注于互联网技术支持、Java基础进阶、高级源码解析、面试问题解答、Redis、MongoDB、Mysql中间件使用介绍、Pytho..." data-title="QQ">
-              <i class="fa fa-qq"></i>
-            </a>
-          </li>
-          <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://jalon007.github.io/2018/09/10/Java面试知识点/" data-title="Facebook">
-              <i class="fa fa-facebook"></i>
-            </a>
-          </li>
-          <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java高级开发工程师面试题整理》 — JalonShare-互联网技术分享-技术进阶、源码解析、服务优化、面试技巧、分享学习&url=http://jalon007.github.io/2018/09/10/Java面试知识点/&via=http://jalon007.github.io" data-title="Twitter">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://jalon007.github.io/2018/09/10/Java面试知识点/" data-title="Google+">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </li>
-        </ul>
-     </div>
-</div>
-<div class="post-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;" id="wxShare-close">×</a>
-    <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://jalon007.github.io/2018/09/10/Java面试知识点/" alt="微信分享二维码">
-</div>
-
-<div class="mask"></div>
-
-        
-        <ul class="article-footer-menu">
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/面试准备/" class="color5">面试准备</a>
-      
-  </li>
-
-        </ul>
-        
-    </footer>
-  </div>
-</article>
-
-
-    <aside class="post-toc-pos post-toc-top" id="post-toc">
-        <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、常用设计模式"><span class="post-toc-text">1、常用设计模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、基础知识"><span class="post-toc-text">2、基础知识</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、其它"><span class="post-toc-text">3、其它</span></a></li></ol>
-        </nav>
-    </aside>
-    
-
-<nav id="article-nav">
-  
-    <a href="/2018/09/11/docker/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          (no title)
-        
-      </span>
-    </a>
-  
-  
-    <a href="/2018/09/06/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">Hello World</span>
-      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-    </a>
-  
-</nav>
-
-
-
-    
-</section>
-        
-      </div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
-
-      <p>&copy; 2018 Jalon .all for share<br>
-      </p>
-    </div>
-  </div>
-</footer>
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script>
-  var mihoConfig = {
-      root: "http://jalon007.github.io",
-      animate: true,
-      isHome: false,
-      share: true,
-      reward: 1
-  }
-</script>
-<div class="sidebar">
-    <div id="sidebar-search" title="Search">
-        <i class="fa fa-search"></i>
-    </div>
-    <div id="sidebar-category" title="Categories">
-        <i class="fa fa-book"></i>
-    </div>
-    <div id="sidebar-tag" title="Tags">
-        <i class="fa fa-tags"></i>
-    </div>
-    <div id="sidebar-top">
-        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
-    </div>
-</div>
-<div class="sidebar-menu-box" id="sidebar-menu-box">
-    <div class="sidebar-menu-box-container">
-        <div id="sidebar-menu-box-categories">
-            
-        </div>
-        <div id="sidebar-menu-box-tags">
-            <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/面试准备/" style="font-size: 10px;">面试准备</a>
-        </div>
-    </div>
-    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
-</div>
-<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
-    <div class="mobile-header-menu-container">
-        <span class="title">Menus</span>
-        <ul class="mobile-header-menu-navbar">
-            
-            <li>
-                <a  href="/">
-                    <i class="fa fa-home"></i><span>Home</span>
-                </a>
-            </li>
-            
-            <li>
-                <a  href="/archives">
-                    <i class="fa fa-archive"></i><span>Archives</span>
-                </a>
-            </li>
-            
-            <li>
-                <a  href="/about">
-                    <i class="fa fa-user"></i><span>About</span>
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-    <div class="mobile-header-tag-container">
-        <span class="title">Tags</span>
-        <div id="mobile-header-container-tags">
-            <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/面试准备/" style="font-size: 10px;">面试准备</a>
-        </div>
-    </div>
-</div>
-<div class="search-wrap">
-    <span class="search-close">&times;</span>
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-            <i class="icon icon-lg icon-chevron-left"></i>
-        </a>
-        <input class="search-field" placeholder="Search..." id="keywords">
-        <a id="search-submit" href="javascript:;">
-            <i class="fa fa-search"></i>
-        </a>
-    <div class="search-container" id="search-container">
-        <ul class="search-result" id="search-result">
-        </ul>
-    </div>
-</div>
-
-<div id="search-tpl">
-    <li class="search-result-item">
-        <a href="{url}" class="search-item-li">
-            <span class="search-item-li-title" title="{title}">{title}</span>
-        </a>
-    </li>
-</div>
-<script src="/js/search.js"></script>
-<script src="/js/main.js"></script>
-
-
-  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
-  <div id="particles"></div>
-  <script src="/js/particles.js"></script>
-
-
-
-
-
-
-
-  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
-  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
-  <script src="/js/animate.js"></script>
-
-
-  <script src="/js/pop-img.js"></script>
-  <script>
-     $(".article-entry p img").popImg();
-  </script>
-
-  </div>
-</body>
-</html>
+    if page.comments
+      include _partial/comments.pug
